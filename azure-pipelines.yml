@@ -13,6 +13,12 @@ jobs:
       Python38:
         python.version: '3.8'
 
+  variables:
+  - name: CC
+    value: /usr/bin/clang-9
+  - name: CXX
+    value: /usr/bin/clang++-9
+
   steps:
   - bash: |
       echo "##vso[task.prependpath]$CONDA/bin"

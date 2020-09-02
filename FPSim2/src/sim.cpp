@@ -23,7 +23,7 @@ inline uint64_t popcntll(uint64_t X)
 uint64_t PyPopcount(py::array_t<uint64_t> py_query) {
     auto query = py_query.unchecked<1>();
     uint64_t qcount = 0;
-    for (size_t i = 0; i < query.shape(0); i++)
+    for (ssize_t i = 0; i < query.shape(0); i++)
         qcount += popcntll(query(i));
     return qcount;
 }

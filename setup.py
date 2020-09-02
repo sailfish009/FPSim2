@@ -86,11 +86,14 @@ def cpp_flag(compiler):
 class BuildExt(build_ext):
     """A custom build extension for adding compiler-specific options."""
 
-    c_opts = {"msvc": ["/EHsc", "/arch:AVX"], "unix": ["-O3", "-march=native"]}
-    l_opts = {"msvc": [], "unix": []}
+    c_opts = {
+        "msvc": ["/EHsc", "/arch:AVX"],
+        "unix": ["-O3", "-stdlib=libc++", "-march=native"],
+    }
+    l_opts = {"msvc": [], "unix": ["-stdlib=libc++"]}
 
     if sys.platform == "darwin":
-        darwin_opts = ["-stdlib=libc++", "-mmacosx-version-min=10.9"]
+        darwin_opts = ["-mmacosx-version-min=10.9"]
         c_opts["unix"] += darwin_opts
         l_opts["unix"] += darwin_opts
 
